@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#
+# Wrapper for nnn that enables image previews using ueberzug.
+#
+# Depends on:
+# ueberzug, nnn
+#
+
+export FIFO_UEBERZUG="/tmp/nnn-ueberzug-${PPID}"
+
+readonly ID_PREVIEW="preview"
+readonly S_HEIGHT=0.9
+readonly S_WIDTH=0.4
+
+function cleanup {
+    rm "$FIFO_UEBERZUG" 2>/dev/null
+    pkill -P $$ 2>/dev/null
+}
+
+rm "$FIFO_UEBERZUG" 2>/dev/null
+mkfifo "$FIFO_UEBERZUG"
+trap cleanup EXIT
+tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash & # bg ueberzug
+
+while true
+do
+    if read line; then
+      cols=$(tput cols)
+      lines=$(tput lines)
+      f_width=$(echo "$cols * $S_WIDTH" | bc)
+      f_height=$(echo "$lines * $S_HEIGHT" | bc)
+      width=${f_width%.*}
+      height=${f_height%.*}
+      declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+        [x]="$(($cols - width))" [y]=1 [width]="$width" [height]="$height" \
+        [scaler]="contain" \
+        [path]="$line") \
+      > "$FIFO_UEBERZUG"
+    fi
+done <"$NNN_FIFO" &
+
+nnn -o "$@" # -o is my preferred option so I put it here
+
+cleanup
+

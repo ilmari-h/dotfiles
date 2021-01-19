@@ -1,0 +1,5 @@
+[init]
+	templatedir = ~/.config/git/templates
+[user]
+	name = ilmari
+	email = 7689734-_ilmari@users.noreply.gitlab.com

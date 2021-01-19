@@ -1,0 +1,105 @@
+! Theme: gruvbox
+! === Global colors ===
+#define BG #1c1c1c
+#define RBG #EE1c1c1c
+#define TP  #00000000
+!#define BG #282828
+#define FG #ebdbb2
+#define C0 #282828
+!#define C0 #3c3836
+#define C8 #928374
+#define C1  #cc241d
+#define C9  #fb4934
+#define C2  #98971a
+#define C10  #b8bb26
+#define C3 #d79921
+#define C11  #fabd2f
+#define C4  #458588
+#define C12 #83a598
+#define C5 #b16286
+#define C13 #d3869b
+#define C6 #689d6a
+#define C14 #8ec07c
+#define C7  #a89984
+#define C15  #ebdbb2
+
+
+! === Font rendering ===
+Xft.autohint: 1
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+! *font:          xft:inconsolatazi4:size=18
+
+! === DPI  ===
+Xft.dpi:	80
+!
+
+! === xrdb Colours ===
+!
+! hard contrast: *background: #1d2021
+*background: BG
+! soft contrast: *background: #32302f
+*foreground: FG
+! Black + DarkGrey
+*color0:  C0
+*color8:  C8
+! DarkRed + Red
+*color1:  C1
+*color9:  C9
+! DarkGreen + Green
+*color2: C2
+*color10: C10
+! DarkYellow + Yellow
+*color3:  C3
+*color11: C11
+! DarkBlue + Blue
+*color4:  C4
+*color12: C12
+! DarkMagenta + Magenta
+*color5:  C5
+*color13: C13
+! DarkCyan + Cyan
+*color6:  C6
+*color14: C14
+! LightGrey + White
+*color7:  C7
+*color15: C15
+
+! === rofi ===
+
+rofi.modi:                           window,drun,run
+rofi.sidebar-mode:                   true
+rofi.terminal:                       st
+rofi.ssh-client:                     ssh
+rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
+rofi.opacity:                        80
+rofi.width:                          22
+rofi.lines:                          12
+rofi.columns:                        1
+rofi.font:                           Inconsolata Nerd Font Mono 11
+rofi.fg:                             FG
+rofi.bg:                             BG
+
+! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+rofi.color-active: TP,        FG,      TP,        TP,       C6
+rofi.color-normal: TP,        FG,      TP,        TP,       C6
+rofi.color-urgent: TP,        FG,      TP,        TP,       C6
+
+!                  'background', 'border'
+rofi.color-window: RBG,           C4
+rofi. match-highlight-font-weight:   bold
+rofi.bw:                             1
+rofi.location:                       0
+rofi.padding:                        4
+rofi.show-icons: 		     true
+rofi.levenshtein-sort:               true
+rofi.case-sensitive:                 false
+rofi.fuzzy:                          false
+rofi.line-margin:                    1
+rofi.separator-style:                none
+rofi.hide-scrollbar:                 true
+rofi.markup-rows:                    false
+rofi.scrollbar-width:                8

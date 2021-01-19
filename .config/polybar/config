@@ -1,0 +1,229 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = ${xrdb:background}
+background-alt = #1c1c1c
+foreground = ${xrdb:foreground}
+foreground-alt = #555
+primary = ${xrdb:color14:#8ec07c}
+secondary = #e60053
+alert = ${xrdb:color1}
+blue = ${xrdb:color4}
+magneta = ${xrdb:color13}
+orange = ${xrdb:color3}
+green = ${xrdb:color14}
+
+[bar/main]
+width = 100%
+height = 24
+radius = 0
+fixed-center = true
+
+; remote control 
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "Hack Nerd Font Mono:size=8:style=Regular:antialias=true;2"
+font-1 = "Inconsolata Nerd Font Mono:size=10:antialias=true;2"
+
+; ICON FONTS
+font-2 = "Hack Nerd Font Mono:size=16:style=Regular:antialias=true;3"
+font-3 = "Hack Nerd Font Mono:size=16:style=Regular:antialias=true;4"
+
+modules-left = archmenu bspwm 
+;modules-center = polybar-windows
+modules-right = pulseaudio sep filesystem memory cpu wlan eth temperature sep date 
+
+tray-position = right
+tray-padding = 4
+tray-detached = false
+tray-scale = 1.0
+tray-background = {colors.background}
+
+wm-restack = bspwm
+
+cursor-click = pointer
+cursor-scroll = pointer
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:40:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+;label-mounted = %{T3}%{T-} %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{T3}%{T-} %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %name% 
+label-focused-background = ${colors.blue}
+;label-focused-underline= ${colors.primary}
+label-focused-padding = 1
+label-focused-underline = ${colors.background-alt}
+label-focused-overline = ${colors.background-alt}
+
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = 
+label-empty-foreground = ${colors.background-alt}
+label-empty-background = ${colors.foreground-alt}
+label-empty-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label =%{T4}﬙%{T-} %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %{T3}%{T-} %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = net0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%{A1:$HOME/.config/polybar/rofi-calendar.sh:}%{T3}%{T-} %d %b%{A}"
+time = %{T3}%{T-} %H:%M
+format-prefix =
+label = %date%   %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume =%{T3}%{T-} %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted = <label-muted> %{T1} 0% muted     %{T-}
+label-muted = %{T3} 婢%{T-}
+format-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
+bar-volume-foreground-5 = ${colors.green}
+bar-volume-foreground-6 = ${colors.green}
+bar-volume-foreground-7 = ${colors.green}
+bar-volume-foreground-8 = ${colors.alert}
+bar-volume-gradient = false
+bar-volume-indicator = ─
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+[module/archmenu]
+type = custom/text
+expand-right = true
+format-spacing = 1
+content = %{T3} %{T-}
+content-foreground = ${colors.blue}
+click-left = rofi-fixed.sh -show drun
+
+; depends on wmctrl
+[module/polybar-windows]
+type = custom/script
+exec = polybar-windows.sh
+format = <label>
+label = %output%
+label-padding = 1
+interval = 0.3
+
+; separator
+[module/sep]
+type = custom/text
+expand-right = true
+format-spacing = 1
+content = "   "
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = false
+

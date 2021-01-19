@@ -1,3 +1,5 @@
 # dotfiles
 
-Configuration files and scripts for my desktop.
+Dotfiles and scripts for my desktop.
+
+<img src="/scrot.png" width="800">

@@ -1,0 +1,64 @@
+#! /bin/sh
+# 
+# Desktop environment config
+#
+xsetroot -cursor_name left_ptr &
+pgrep -x sxhkd > /dev/null || sxhkd &
+$HOME/.config/polybar/launch.sh
+
+bspc monitor DVI-D-0 -d 1 2 3 4 5 6 7 8 9
+bspc monitor HDMI-0 -d 10
+bspc wm -O DVI-D-0 HDMI-0
+
+bspc config border_width         1
+bspc config window_gap          10
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config focused_border_color "#8ec07c"
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Termite state=tiled rectangle=572x360
+
+
+cleanfullscreen & # Hide bar and tiled windows in fullscreen 
+
+# Keyboard, rebind Caps Lock to ESC
+setxkbmap -option caps:escape & 
+
+# Wallpaper
+xwallpaper --zoom ~/Pictures/theme/forest-stairs.jpg
+
+# Notifications
+/usr/bin/dunst &
+
+# Auto-mounting
+udiskie &
+
+# Authentication GUI, polkit
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Compositor
+picom &
+
+# Fan curve
+exec .config/nfancurve/temp.sh > /dev/null 2>&1 &
+
+# Power management
+xidlehook \
+  `# Don't lock when there's a fullscreen application` \
+  --not-when-fullscreen \
+  `# Don't lock when there's audio playing` \
+  --not-when-audio \
+  `# Suspend after 30 minutes of inactivity` \
+  --timer 1800 \
+    'systemctl suspend' \
+    '' &
+# Music Player Daemon
+mpd &
