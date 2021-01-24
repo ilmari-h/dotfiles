@@ -129,9 +129,11 @@ endfunction
 
 " Terminal (internal & external)
 nnoremap <F4> :call Term_toggle(10)<cr>
-tnoremap <F4> <C-\><C-n>:call Term_toggle(10)<cr>
-nnoremap <F5> :!$TERM -e ranger & <cr><cr>
-nnoremap <F6> :!$TERM & <cr><cr>
+"tnoremap <F4> <C-\><C-n>:call Term_toggle(10)<cr>
+nnoremap <F5> :!$TERMINAL -e ranger & <cr><cr>
+nnoremap <F6> :!$TERMINAL & <cr><cr>
+let g:floaterm_keymap_toggle = '<F4>'
+hi FloatermBorder guibg=orange guifg=cyan
 
 " Disable arrow keys 
 noremap <Up> <Nop>
@@ -153,11 +155,12 @@ Plug 'mhinz/vim-startify'
 Plug 'alvan/vim-closetag'
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'svermeulen/vim-easyclip'
+Plug 'voldikss/vim-floaterm'
 " File management
     Plug 'junegunn/fzf.vim'
     Plug 'dkprice/vim-easygrep'
     Plug 'lambdalisue/suda.vim'
-    Plug 'svermeulen/vim-easyclip'
 " Javascript
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'yuezk/vim-js'
