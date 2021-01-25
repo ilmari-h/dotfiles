@@ -160,7 +160,6 @@ Plug 'voldikss/vim-floaterm'
 " File management
     Plug 'junegunn/fzf.vim'
     Plug 'dkprice/vim-easygrep'
-    Plug 'lambdalisue/suda.vim'
 " Javascript
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'yuezk/vim-js'
