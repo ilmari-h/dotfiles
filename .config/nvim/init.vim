@@ -42,6 +42,8 @@ autocmd FileType html,css EmmetInstall
 let g:lsp_cxx_hl_use_text_props = 1
 
 " LaTeX
+let g:tex_conceal = ""
+let g:vimtex_syntax_conceal_default = 0
 let g:vimtex_compiler_latexmk = {
       \ 'build_dir' : '',
       \ 'callback' : 1,
