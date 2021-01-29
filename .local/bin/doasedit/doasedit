@@ -1,0 +1,24 @@
+#!/bin/bash
+[[ ! -z "${2}" ]] && echo "Too many arguments" && exit 1;
+[[ -z "${1}" ]] && echo "No file provided" && exit 1;
+
+auth=$AUTH 
+[[ -z "${auth}" ]] && auth="doas";
+tempdir=$XDG_CACHE_HOME
+[[ -z "${tempdir}" ]] && tempdir="/tmp";
+editlocation=$tempdir/$(basename $1)
+statusfile="/tmp/doasedit.status"
+
+$auth doascopy.sh $@ $editlocation $(whoami) $statusfile & disown
+
+while true
+do
+    if [[ -f $statusfile ]]; then
+      break;
+    else 
+      sleep 0.1;
+    fi
+done &&
+
+$EDITOR $editlocation &&
+rm /tmp/doasedit.status
