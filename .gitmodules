@@ -1,0 +1,3 @@
+[submodule ".local/bin/doasedit"]
+	path = .local/bin/doasedit
+	url = https://gitlab.com/_ilmari/doasedit.git
