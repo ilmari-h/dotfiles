@@ -30,6 +30,9 @@ let g:startify_custom_header = [
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 
+" Autocomplete / suggestion syntax
+hi Pmenu ctermbg=black ctermfg=white
+
 " * * * * * * * * * * * * 
 " Language Syntax
 " * * * * * * * * * * * * 
