@@ -24,6 +24,7 @@ export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export HISTFILE="$XDG_DATA_HOME"/bash/history
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export STACK_ROOT="$XDG_DATA_HOME"/stack
 
 # Pre window manager
 xset r rate 280 40
