@@ -1,0 +1,3 @@
+#!/bin/sh
+url="rate.sx/$@"
+curl $url

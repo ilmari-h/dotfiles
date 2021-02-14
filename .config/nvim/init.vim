@@ -66,12 +66,10 @@ let g:vimtex_compiler_latexmk = {
 " * * * * * * * * * * * * 
 
 set shortmess=A " No swapfile nagging
-
 set clipboard=unnamed,unnamedplus " No bs clipboard
-
 set undodir=~/.cache/nvim/undo
 set undofile
-set scrolloff=999
+set scrolloff=10 " Margin of scroll
 set mouse=a
 command W w
 map <C-c> "+y
