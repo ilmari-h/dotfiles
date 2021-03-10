@@ -5,12 +5,13 @@ source $HOME/.config/nvim/plugged-config/fzf.vim
 " Theme 		  
 " * * * * * * * * * * * * 
 
-set relativenumber
+"set relativenumber
 set number
 set splitbelow
 
 highlight LineNr ctermfg=grey
-highlight VertSplit cterm=NONE
+highlight VertSplit cterm=NONE ctermfg=black
+"set fillchars=vert:\⠀
 
 let g:indentLine_fileTypeExclude = ['startify']
 let g:indentLine_bufTypeExclude = ['help', 'terminal']
@@ -81,8 +82,6 @@ set undofile
 set scrolloff=10 " Margin of scroll
 set mouse=a
 command W w
-map <C-c> "+y
-map <C-p> "+p
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 

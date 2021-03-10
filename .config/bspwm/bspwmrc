@@ -26,7 +26,6 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Termite state=tiled rectangle=572x360
 
-
 cleanfullscreen & # Hide bar and tiled windows in fullscreen 
 
 # Keyboard, rebind Caps Lock to ESC

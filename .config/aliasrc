@@ -4,7 +4,7 @@
 alias {vim,v,vi}="nvim"
 alias r="ranger"
   # package fzf
-alias yays="fzf-packages.sh"
+alias yays="fzf-aur"
 alias lm="ls -t -1"
 alias cp="cp -iv"
 alias mv="mv -iv"
