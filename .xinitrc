@@ -16,10 +16,15 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export _JAVA_AWT_WM_NONREPARENTING=1
+
 # God knows why all three of these are needed
 export ANDROID_SDK_ROOT=$HOME/.local/share/androidDEV/Sdk
 export ANDROID_SDK_HOME=$HOME/.local/share/androidDEV/Sdk
 export ANDROID_HOME=$HOME/.local/share/androidDEV/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # XDG Base Directory compliance
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
