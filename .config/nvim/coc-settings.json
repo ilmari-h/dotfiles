@@ -1,28 +1,46 @@
 {
-    "diagnostic.enableSign": false,
-    "python.jediEnabled": false,
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "highlight": { "lsRanges" : true }
-            }
+  "diagnostic.enableSign": false,
+  "python.jediEnabled": false,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "highlight": { "lsRanges" : true }
+      }
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+          "args": [
+            "--lsp"
+          ],
+          "rootPatterns": [
+            ".stack.yaml",
+            ".hie-bios",
+            "BUILD.bazel",
+            "cabal.config",
+            "package.yaml"
+          ],
+          "filetypes": [
+            "hs",
+            "lhs",
+            "haskell"
+          ]
         }
     }
 }
