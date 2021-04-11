@@ -3,7 +3,6 @@
 # Aliases
 alias {vim,v,vi}="nvim"
 alias r="ranger"
-  # package fzf
 alias yays="fzf-aur"
 alias lm="ls -t -1"
 alias cp="cp -iv"
@@ -20,3 +19,10 @@ alias sudoedit="doasedit"
 alias md2pdf="pandoc -V geometry:margin=1in -o output.pdf $1"
 alias fzf-Qi='yay -Qi $( yay -Qi | grep "Name * :" | awk "{print \$3, \$4, \$5}" | fzf )'
 alias eva="eva --fix 2"
+
+# git
+alias g="git"
+alias gaa="git add --all"
+alias gc="git commit"
+alias gs="git status"
+alias gss="git status -s"
