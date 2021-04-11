@@ -19,3 +19,4 @@ alias yay="paru"
 alias sudoedit="doasedit"
 alias md2pdf="pandoc -V geometry:margin=1in -o output.pdf $1"
 alias fzf-Qi='yay -Qi $( yay -Qi | grep "Name * :" | awk "{print \$3, \$4, \$5}" | fzf )'
+alias eva="eva --fix 2"

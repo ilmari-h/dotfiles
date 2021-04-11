@@ -75,6 +75,12 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Usability 		  
 " * * * * * * * * * * * * 
 
+" Use x to cut. By default it's m, which overrides mark.
+let g:EasyClipUseCutDefaults = 0
+nmap x <Plug>MoveMotionPlug
+xmap x <Plug>MoveMotionXPlug
+nmap xx <Plug>MoveMotionLinePlug
+
 set shortmess=A " No swapfile nagging
 set clipboard=unnamed,unnamedplus " No bs clipboard
 set undodir=~/.cache/nvim/undo
