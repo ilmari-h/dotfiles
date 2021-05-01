@@ -13,12 +13,14 @@ alias mount-android="jmtpfs /mnt/android"
 alias dus="du -s -h"
 alias mktex="cp $HOME/.config/latex-template/template.tex ./"
 alias disk-usage="ncdu"
-alias sshpi="ssh pi@192.168.1.4"
+alias sshpi="ssh pi@192.168.1.3"
+alias sshfspi="sshfs pi@192.168.1.3:/ /mnt/pi-remote/"
 alias yay="paru"
 alias sudoedit="doasedit"
 alias md2pdf="pandoc -V geometry:margin=1in -o output.pdf $1"
 alias fzf-Qi='yay -Qi $( yay -Qi | grep "Name * :" | awk "{print \$3, \$4, \$5}" | fzf )'
 alias eva="eva --fix 2"
+alias monero-wallet-cli="monero-wallet-cli --daemon-address node-1.sethsimmons.me:18089"
 
 # git
 alias g="git"

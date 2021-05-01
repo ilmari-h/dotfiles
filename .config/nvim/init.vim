@@ -75,6 +75,10 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Usability 		  
 " * * * * * * * * * * * * 
 
+" Use case-insensitive search when pattern is lowercase.
+set ignorecase
+set smartcase
+
 " Use x to cut. By default it's m, which overrides mark.
 let g:EasyClipUseCutDefaults = 0
 nmap x <Plug>MoveMotionPlug
