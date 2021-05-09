@@ -14,6 +14,7 @@ cp $from $to &&
 chmod a=rw $to &&
 create_copy &&
 
+# Wait for editor to close
 while true
 do
     if [[ ! -f $statusfile ]]; then
@@ -24,6 +25,6 @@ do
 done &&
 
 mv $to $from &&
-chmod $permissions $from
+chmod $permissions $from &&
 
 exit 0

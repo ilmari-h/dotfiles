@@ -3,10 +3,8 @@
 #define BG #1c1c1c
 #define RBG #EE1c1c1c
 #define TP  #00000000
-!#define BG #282828
 #define FG #ebdbb2
 #define C0 #282828
-!#define C0 #3c3836
 #define C8 #928374
 #define C1  #cc241d
 #define C9  #fb4934

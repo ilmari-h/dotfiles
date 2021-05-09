@@ -22,7 +22,7 @@
 auth=$AUTH 
 [[ -z "${auth}" ]] && auth="doas";
 
-editlocation=$(mktemp)
+editlocation=$(mktemp --suffix "-$1")
 statusfile="/tmp/doasedit-${$}.status"
 
 $auth doascopy.sh $1 $editlocation $(whoami) $statusfile & disown

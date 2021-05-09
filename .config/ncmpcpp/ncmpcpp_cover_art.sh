@@ -194,8 +194,8 @@ guess_terminal_pixelsize() {
     gwidth=$(printf "$(xwininfo -id $WINDOWID)" | grep Width)
     term_width=$(echo $gwidth | awk '{print $2}')
     gheight=$(printf "$(xwininfo -id $WINDOWID)" | grep Height)
-    term_height=$(echo $gheight | awk '{print $2}')
-    # echo $term_width $term_height > /tmp/ncmpcpp_geometry.txt
+    term_heightc=$(echo $gheight | awk '{print $2}')
+    term_height=$(( term_heightc - 30)) # hardcoded forced fix XXX
 
     if ! is_font_size_successfully_computed; then
         echo "Failed to guess font size, try setting it in ncmpcpp_cover_art.sh settings"

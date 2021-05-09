@@ -6,8 +6,8 @@
 
 # Environment Variables
 export EDITOR=nvim
-export TERM=termite
-export TERMINAL=termite
+export TERM=alacritty
+export TERMINAL=alacritty
 export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
