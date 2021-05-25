@@ -3,3 +3,5 @@
 [user]
 	name = ilmari
 	email = 7689734-_ilmari@users.noreply.gitlab.com
+[core]
+	editor = nvim
