@@ -42,6 +42,9 @@ hi Pmenu ctermbg=black ctermfg=white
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
+" CSS
+autocmd FileType scss setl iskeyword+=@-@
+
 " C++
 let g:lsp_cxx_hl_use_text_props = 1
 

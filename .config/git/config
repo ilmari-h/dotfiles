@@ -5,3 +5,8 @@
 	email = 7689734-_ilmari@users.noreply.gitlab.com
 [core]
 	editor = nvim
+[alias]
+  co = checkout
+  aa = add --all
+  ct = commit
+  st = status
