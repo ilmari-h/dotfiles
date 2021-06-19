@@ -1,6 +1,7 @@
 #!/bin/sh
+# Include web-dev related files for formatting.
 FILES=$(git diff --cached --name-only --diff-filter=ACMR \
-  "*.js" "*.jsx" "*.ts" "*.tsx" | sed 's| |\\ |g')
+  "*.js" "*.jsx" "*.ts" "*.tsx" "*.scss" "*.css" "*.py" "*.json" "*.html" | sed 's| |\\ |g')
 
 [ -z "$FILES" ] && exit 0
 
