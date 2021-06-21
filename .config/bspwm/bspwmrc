@@ -63,3 +63,5 @@ xidlehook \
 # Music Player Daemon
 mpd &
 
+# Remove annoying stuff
+rm $HOME/.yarnrc

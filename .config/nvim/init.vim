@@ -157,6 +157,10 @@ nnoremap <F4> :call Term_toggle(10)<cr>
 nnoremap <F5> :!$TERMINAL -e ranger & <cr><cr>
 nnoremap <F6> :!$TERMINAL & <cr><cr>
 let g:floaterm_keymap_toggle = '<F4>'
+let g:floaterm_keymap_prev   = '<F2>'
+let g:floaterm_keymap_next   = '<F3>'
+let g:floaterm_keymap_new    = '<Leader>ft'
+let g:floaterm_keymap_kill   = '<Leader><F4>'
 hi FloatermBorder guibg=orange guifg=cyan
 
 " Disable arrow keys 
@@ -181,6 +185,8 @@ Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'svermeulen/vim-easyclip'
 Plug 'voldikss/vim-floaterm'
+" Git
+    Plug 'tpope/vim-fugitive'
 " File management
     Plug 'junegunn/fzf.vim'
     Plug 'dkprice/vim-easygrep'
