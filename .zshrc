@@ -26,6 +26,15 @@ unsetopt nomatch
 bindkey -v '^?' backward-delete-char # backspace all
 set +H
 
+# Prevent nested ranger instances
+ranger() {
+    if [ -z "$RANGER_LEVEL" ]; then
+        /usr/bin/ranger "$@"
+    else
+        exit
+    fi
+}
+
 # VI modes have different cursors
 zle-keymap-select () {
 if [ $KEYMAP = vicmd ]; then
