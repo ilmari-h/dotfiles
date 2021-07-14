@@ -1,0 +1,12 @@
+#!/bin/sh
+
+INDX=1;
+while read line
+do
+    printf "[$INDX] $line\n"
+    ((INDX=INDX+1));
+done <  "$HOME/.config/servers"
+
+printf "Connect to server [1-$((INDX-1))]: "
+read ADDR_I
+ssh $(sed -n "${ADDR_I}p" < "$HOME/.config/servers" )

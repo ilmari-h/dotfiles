@@ -25,6 +25,7 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 unsetopt nomatch
 bindkey -v '^?' backward-delete-char # backspace all
 set +H
+zstyle ':completion:*' hosts off # ignore hostfile for autocomplete
 
 # Prevent nested ranger instances
 ranger() {

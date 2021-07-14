@@ -30,7 +30,7 @@ super + alt + Escape
 	pkill -USR1 -x sxhkd
 
 # toggle Caps-Lock
-super + alt + l
+super + ctrl + l
   xdotool key Caps_Lock
 
 #

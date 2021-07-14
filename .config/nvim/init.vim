@@ -82,11 +82,13 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 set ignorecase
 set smartcase
 
-" Use x to cut. By default it's m, which overrides mark.
-let g:EasyClipUseCutDefaults = 0
-nmap x <Plug>MoveMotionPlug
-xmap x <Plug>MoveMotionXPlug
-nmap xx <Plug>MoveMotionLinePlug
+" Delete without yanking
+nnoremap x "_d
+vnoremap x "_d
+nnoremap X "_d_
+vnoremap X "_d_
+nnoremap xx "_dd
+vnoremap xx "_dd
 
 set shortmess=A " No swapfile nagging
 set clipboard=unnamed,unnamedplus " No bs clipboard
@@ -183,7 +185,6 @@ Plug 'mhinz/vim-startify'
 Plug 'alvan/vim-closetag'
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'svermeulen/vim-easyclip'
 Plug 'voldikss/vim-floaterm'
 " Git
     Plug 'tpope/vim-fugitive'
