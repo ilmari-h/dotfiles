@@ -9,6 +9,7 @@ export EDITOR=nvim
 export TERM=alacritty
 export TERMINAL=alacritty
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/share/npm/bin
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
