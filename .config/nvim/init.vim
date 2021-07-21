@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " LSP, autocomplete, suggestions
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-lua/completion-nvim'
 
 " Tabline
 Plug 'vim-airline/vim-airline'
@@ -170,21 +170,11 @@ map <leader>b     :Lines<CR>
 let g:lexima_enable_basic_rules = 0
 let g:lexima_enable_newline_rules = 1
 
-" CoC settings XXX
-" Use tab for trigger completion with characters ahead and navigate.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
- inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
- function! s:check_back_space() abort
-   let col = col('.') - 1
-   return !col || getline('.')[col - 1]  =~# '\s'
- endfunction
 
 " LSP, autocomplete, suggestions configs
+autocmd BufEnter * lua require'completion'.on_attach()
 source $HOME/.config/nvim/plugged-config/lsp.vim
-luafile $HOME/.config/nvim/lua/plugins/compe-config.lua
+source $HOME/.config/nvim/plugged-config/completion.vim
 luafile $HOME/.config/nvim/lua/plugins/lsp-diagnostics.lua
 
 " Language plugins
@@ -215,8 +205,6 @@ endfunction
 
 
 " Terminal (internal & external)
-nnoremap <F4> :call Term_toggle(10)<cr>
-"tnoremap <F4> <C-\><C-n>:call Term_toggle(10)<cr>
 nnoremap <F5> :!$TERMINAL -e ranger & <cr><cr>
 nnoremap <F6> :!$TERMINAL & <cr><cr>
 let g:floaterm_keymap_toggle = '<F4>'
