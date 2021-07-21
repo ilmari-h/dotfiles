@@ -1,3 +1,4 @@
+
 " * * * * * * * * * * * * 
 " Plugins
 " * * * * * * * * * * * * 
@@ -5,8 +6,13 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " LSP, autocomplete, suggestions
+Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+"Plug 'nvim-lua/completion-nvim'
+Plug 'ray-x/lsp_signature.nvim'
+
+" Syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " Tabline
 Plug 'vim-airline/vim-airline'
@@ -33,15 +39,9 @@ Plug 'voldikss/vim-floaterm'
 " Css
     Plug 'ap/vim-css-color'
 " HTML and HTML-templates
-    Plug 'mattn/emmet-vim'
     Plug 'lepture/vim-jinja'
 " Vim Wiki
     Plug 'vimwiki/vimwiki'
-" Python
-    " Depends on: pip3 install pynvim --upgrade 
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" C++/C
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
 " Godot
     Plug 'habamax/vim-godot'
 " LaTeX
@@ -54,7 +54,8 @@ call plug#end()
 " * * * * * * * * * * * * 
 " Theme 		  
 " * * * * * * * * * * * * 
-"
+
+set signcolumn=yes
 
 "set relativenumber
 set number
@@ -67,7 +68,6 @@ highlight VertSplit cterm=NONE ctermfg=black
 let g:indentLine_fileTypeExclude = ['startify']
 let g:indentLine_bufTypeExclude = ['help', 'terminal']
 let g:indentLine_bufNameExclude = ['term:*']
-autocmd TermOpen * setlocal nonumber norelativenumber
 
 " startify
 let g:startify_custom_header = [
@@ -90,10 +90,9 @@ hi Pmenu ctermbg=black ctermfg=white
 " * * * * * * * * * * * * 
 " Language Syntax
 " * * * * * * * * * * * * 
+"
 
-" HTML5
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+source $HOME/.config/nvim/plugged-config/treesitter.vim
 
 " CSS
 autocmd FileType scss setl iskeyword+=@-@
@@ -130,6 +129,9 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " * * * * * * * * * * * * 
 " Usability 		  
 " * * * * * * * * * * * * 
+
+let mapleader = " "
+map \ <leader>
 
 " FZF
 source $HOME/.config/nvim/plugged-config/fzf.vim
@@ -170,17 +172,17 @@ map <leader>b     :Lines<CR>
 let g:lexima_enable_basic_rules = 0
 let g:lexima_enable_newline_rules = 1
 
-
 " LSP, autocomplete, suggestions configs
-autocmd BufEnter * lua require'completion'.on_attach()
 source $HOME/.config/nvim/plugged-config/lsp.vim
 source $HOME/.config/nvim/plugged-config/completion.vim
 luafile $HOME/.config/nvim/lua/plugins/lsp-diagnostics.lua
+luafile $HOME/.config/nvim/lua/plugins/compe.lua
+
+" Use completion-nvim in every buffer
+"autocmd BufEnter * lua require'completion'.on_attach()
 
 " Language plugins
-  luafile $HOME/.config/nvim/lua/plugins/lsp/python.lua
-  luafile $HOME/.config/nvim/lua/plugins/lsp/bash.lua
-  luafile $HOME/.config/nvim/lua/plugins/lsp/js-ts.lua
+luafile $HOME/.config/nvim/lua/plugins/languages.lua
 
 " Terminal
 let g:term_buf = 0
