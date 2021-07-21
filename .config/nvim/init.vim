@@ -1,17 +1,68 @@
-" Include plugin configs
-source $HOME/.config/nvim/plugged-config/fzf.vim
+" * * * * * * * * * * * * 
+" Plugins
+" * * * * * * * * * * * * 
+
+call plug#begin('~/.config/nvim/plugged')
+
+" LSP, autocomplete, suggestions
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+
+" Tabline
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'mhinz/vim-startify'
+Plug 'alvan/vim-closetag'
+Plug 'cohama/lexima.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'voldikss/vim-floaterm'
+" Git
+    Plug 'tpope/vim-fugitive'
+" File management
+    Plug 'junegunn/fzf.vim'
+    Plug 'dkprice/vim-easygrep'
+" Javascript
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'yuezk/vim-js'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'heavenshell/vim-jsdoc', { 
+          \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+          \ 'do': 'make install'
+          \}
+" Css
+    Plug 'ap/vim-css-color'
+" HTML and HTML-templates
+    Plug 'mattn/emmet-vim'
+    Plug 'lepture/vim-jinja'
+" Vim Wiki
+    Plug 'vimwiki/vimwiki'
+" Python
+    " Depends on: pip3 install pynvim --upgrade 
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" C++/C
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+" Godot
+    Plug 'habamax/vim-godot'
+" LaTeX
+    Plug 'lervag/vimtex'
+" Haskell
+    Plug 'neovimhaskell/haskell-vim'
+
+call plug#end()
 
 " * * * * * * * * * * * * 
 " Theme 		  
 " * * * * * * * * * * * * 
+"
 
 "set relativenumber
 set number
 set splitbelow
 
+" colors
 highlight LineNr ctermfg=grey
 highlight VertSplit cterm=NONE ctermfg=black
-"set fillchars=vert:\⠀
 
 let g:indentLine_fileTypeExclude = ['startify']
 let g:indentLine_bufTypeExclude = ['help', 'terminal']
@@ -29,7 +80,9 @@ let g:startify_custom_header = [
     \ ]
 
 " Airline
+"
 let g:airline#extensions#tabline#enabled = 1
+source $HOME/.config/nvim/plugged-config/airline.vim
 
 " Autocomplete / suggestion syntax
 hi Pmenu ctermbg=black ctermfg=white
@@ -78,20 +131,19 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Usability 		  
 " * * * * * * * * * * * * 
 
+" FZF
+source $HOME/.config/nvim/plugged-config/fzf.vim
+
 " Use case-insensitive search when pattern is lowercase.
 set ignorecase
 set smartcase
 
-" Delete without yanking
-nnoremap x "_d
-vnoremap x "_d
-nnoremap X "_d_
-vnoremap X "_d_
-nnoremap xx "_dd
-vnoremap xx "_dd
+" Yank line to end
+nnoremap Y yg_
+vnoremap Y yg_
 
 set shortmess=A " No swapfile nagging
-set clipboard=unnamed,unnamedplus " No bs clipboard
+set clipboard=unnamed " No bs clipboard
 set undodir=~/.cache/nvim/undo
 set undofile
 set scrolloff=10 " Margin of scroll
@@ -118,18 +170,27 @@ map <leader>b     :Lines<CR>
 let g:lexima_enable_basic_rules = 0
 let g:lexima_enable_newline_rules = 1
 
-" CoC settings
+" CoC settings XXX
 " Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+ function! s:check_back_space() abort
+   let col = col('.') - 1
+   return !col || getline('.')[col - 1]  =~# '\s'
+ endfunction
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" LSP, autocomplete, suggestions configs
+source $HOME/.config/nvim/plugged-config/lsp.vim
+luafile $HOME/.config/nvim/lua/plugins/compe-config.lua
+luafile $HOME/.config/nvim/lua/plugins/lsp-diagnostics.lua
+
+" Language plugins
+  luafile $HOME/.config/nvim/lua/plugins/lsp/python.lua
+  luafile $HOME/.config/nvim/lua/plugins/lsp/bash.lua
+  luafile $HOME/.config/nvim/lua/plugins/lsp/js-ts.lua
 
 " Terminal
 let g:term_buf = 0
@@ -177,44 +238,3 @@ noremap <Right> <Nop>
 
 let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/'}]
 
-" Plugins
-call plug#begin('~/.config/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'
-Plug 'mhinz/vim-startify'
-Plug 'alvan/vim-closetag'
-Plug 'cohama/lexima.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'voldikss/vim-floaterm'
-" Git
-    Plug 'tpope/vim-fugitive'
-" File management
-    Plug 'junegunn/fzf.vim'
-    Plug 'dkprice/vim-easygrep'
-" Javascript
-    Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'yuezk/vim-js'
-    Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'heavenshell/vim-jsdoc', { 
-          \ 'for': ['javascript', 'javascript.jsx','typescript'], 
-          \ 'do': 'make install'
-          \}
-" Css
-    Plug 'ap/vim-css-color'
-" HTML 
-    Plug 'mattn/emmet-vim'
-" Vim Wiki
-    Plug 'vimwiki/vimwiki'
-" Python
-    " Depends on: pip3 install pynvim --upgrade 
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" C++/C
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
-" Godot
-    Plug 'habamax/vim-godot'
-" LaTeX
-    Plug 'lervag/vimtex'
-" Haskell
-    Plug 'neovimhaskell/haskell-vim'
-
-call plug#end()
