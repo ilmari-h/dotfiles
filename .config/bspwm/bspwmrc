@@ -65,3 +65,7 @@ mpd &
 
 # Remove annoying stuff
 rm $HOME/.yarnrc
+
+# Rsync jobs
+rsync-jobs.sh
+

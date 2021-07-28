@@ -1,33 +1,35 @@
-
 " * * * * * * * * * * * * 
 " Plugins
 " * * * * * * * * * * * * 
 
 call plug#begin('~/.config/nvim/plugged')
 
-" LSP, autocomplete, suggestions
+" Language Server Protocol plugins
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
-"Plug 'nvim-lua/completion-nvim'
 Plug 'ray-x/lsp_signature.nvim'
 
 " Syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Update parsers on update
 
 " Tabline
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'mhinz/vim-startify'
-Plug 'alvan/vim-closetag'
+" Misc, non-essentials
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'voldikss/vim-floaterm'
+
 " Git
     Plug 'tpope/vim-fugitive'
-" File management
+" File and project management.
+    Plug 'mhinz/vim-startify'
+    Plug 'voldikss/vim-floaterm'
     Plug 'junegunn/fzf.vim'
     Plug 'dkprice/vim-easygrep'
+"
+" Language specifics:
+"
 " Javascript
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'yuezk/vim-js'
@@ -42,8 +44,6 @@ Plug 'voldikss/vim-floaterm'
     Plug 'lepture/vim-jinja'
 " Vim Wiki
     Plug 'vimwiki/vimwiki'
-" Godot
-    Plug 'habamax/vim-godot'
 " LaTeX
     Plug 'lervag/vimtex'
 " Haskell
@@ -90,7 +90,6 @@ hi Pmenu ctermbg=black ctermfg=white
 " * * * * * * * * * * * * 
 " Language Syntax
 " * * * * * * * * * * * * 
-"
 
 source $HOME/.config/nvim/plugged-config/treesitter.vim
 
@@ -145,7 +144,7 @@ nnoremap Y yg_
 vnoremap Y yg_
 
 set shortmess=A " No swapfile nagging
-set clipboard=unnamed " No bs clipboard
+set clipboard=unnamedplus " No bs clipboard
 set undodir=~/.cache/nvim/undo
 set undofile
 set scrolloff=10 " Margin of scroll
@@ -161,12 +160,6 @@ nnoremap <C-t>    :tabnew<CR>
 
 " Tab indentation
 xnoremap <TAB> =
-
-" FZF bindings
-map <C-p>         :FZF<CR>
-map <leader>p     :Rg<CR> 
-map <C-b>         :Buffers<CR>
-map <leader>b     :Lines<CR>
 
 " autocomplete on newline
 let g:lexima_enable_basic_rules = 0
@@ -187,24 +180,6 @@ luafile $HOME/.config/nvim/lua/plugins/languages.lua
 " Terminal
 let g:term_buf = 0
 let g:term_win = 0
-
-function! Term_toggle(height)
-    if win_gotoid(g:term_win)
-        hide
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            exec "buffer " . g:term_buf
-        catch
-            call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
-endfunction
-
 
 " Terminal (internal & external)
 nnoremap <F5> :!$TERMINAL -e ranger & <cr><cr>
