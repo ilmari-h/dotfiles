@@ -96,8 +96,9 @@ source $HOME/.config/nvim/plugged-config/treesitter.vim
 " CSS
 autocmd FileType scss setl iskeyword+=@-@
 
-" C++
-let g:lsp_cxx_hl_use_text_props = 1
+" C and C++
+autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+autocmd Filetype c setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " LaTeX
 let g:tex_conceal = ""
@@ -129,11 +130,11 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Usability 		  
 " * * * * * * * * * * * * 
 
-let mapleader = " "
-map \ <leader>
-
 " FZF
 source $HOME/.config/nvim/plugged-config/fzf.vim
+
+" FuGitive
+source $HOME/.config/nvim/plugged-config/fugitive.vim
 
 " Use case-insensitive search when pattern is lowercase.
 set ignorecase
@@ -142,6 +143,9 @@ set smartcase
 " Yank line to end
 nnoremap Y yg_
 vnoremap Y yg_
+
+" Easy leader key
+map <space> <leader>
 
 set shortmess=A " No swapfile nagging
 set clipboard=unnamedplus " No bs clipboard

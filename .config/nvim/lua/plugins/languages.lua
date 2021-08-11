@@ -44,3 +44,15 @@ require'lspconfig'.cssls.setup{
       lsp_requires.signature()
     end
 }
+
+require'lspconfig'.ccls.setup{
+  on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+    end,
+  init_options = {
+    clang = {
+      extraArgs = {"--gcc-toolchain=/usr"};
+    }
+  }
+}

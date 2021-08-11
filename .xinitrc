@@ -5,6 +5,7 @@
 # Executed by startx
 
 # Environment Variables
+export TZ='Europe/Helsinki'
 export EDITOR=nvim
 export TERM=alacritty
 export TERMINAL=alacritty
@@ -19,6 +20,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export _JAVA_AWT_WM_NONREPARENTING=1
 export CHIA_ROOT=$HOME/.chia/mainnet
 export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
+export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
+export CABAL_DIR="$XDG_CACHE_HOME"/cabal
 
 # God knows why all three of these are needed
 export ANDROID_SDK_ROOT=$HOME/.local/share/androidDEV/Sdk

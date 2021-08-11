@@ -2,6 +2,7 @@
 # 
 # Desktop environment config
 #
+
 xsetroot -cursor_name left_ptr &
 pgrep -x sxhkd > /dev/null || sxhkd &
 $HOME/.config/polybar/launch.sh
@@ -66,6 +67,6 @@ mpd &
 # Remove annoying stuff
 rm $HOME/.yarnrc
 
-# Rsync jobs
+# Rsync jobs to synchronize files
 rsync-jobs.sh
 
