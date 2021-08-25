@@ -10,5 +10,5 @@ Dotfiles and scripts for my desktop.
 2. Place `pull-dotfiles.sh` script file in this directory.
 3. Run the script when you make changes to your actual dotfiles.
 
-This way you only have to copy the files once manually and after that they can be synced by running the script.
+This way you only have to copy the files once manually and after that they can be synced by running the script. 
 I know you can use bare git repositories and symlinks etc. to do the same thing but I think this is more simple.
