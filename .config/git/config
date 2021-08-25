@@ -1,8 +1,8 @@
 [init]
 	templatedir = ~/.config/git/templates
 [user]
-	name = ilmari
-	email = 7689734-_ilmari@users.noreply.gitlab.com
+	name = ilmari-h
+	email = users.noreply.github.com
 [core]
 	editor = nvim
 [alias]

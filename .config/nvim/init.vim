@@ -11,6 +11,7 @@ Plug 'ray-x/lsp_signature.nvim'
 
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Update parsers on update
+Plug 'tikhomirov/vim-glsl'
 
 " Tabline
 Plug 'vim-airline/vim-airline'
@@ -98,7 +99,11 @@ autocmd FileType scss setl iskeyword+=@-@
 
 " C and C++
 autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 autocmd Filetype c setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" glsl
+autocmd BufEnter,BufNew *.glsl setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " LaTeX
 let g:tex_conceal = ""

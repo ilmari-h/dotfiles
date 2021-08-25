@@ -56,3 +56,10 @@ require'lspconfig'.ccls.setup{
     }
   }
 }
+
+require'lspconfig'.rust_analyzer.setup{
+  on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+    end
+}
