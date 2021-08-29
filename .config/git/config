@@ -2,7 +2,7 @@
 	templatedir = ~/.config/git/templates
 [user]
 	name = ilmari-h
-	email = users.noreply.github.com
+	email = 52321471+ilmari-h@users.noreply.github.com
 [core]
 	editor = nvim
 [alias]

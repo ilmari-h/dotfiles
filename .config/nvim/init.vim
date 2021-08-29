@@ -1,6 +1,6 @@
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
 " Plugins
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -14,8 +14,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Update parsers on
 Plug 'tikhomirov/vim-glsl'
 
 " Tabline
-Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
 
 " Misc, non-essentials
 Plug 'cohama/lexima.vim'
@@ -35,8 +35,8 @@ Plug 'Yggdroot/indentLine'
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'yuezk/vim-js'
     Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'heavenshell/vim-jsdoc', { 
-          \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+    Plug 'heavenshell/vim-jsdoc', {
+          \ 'for': ['javascript', 'javascript.jsx','typescript'],
           \ 'do': 'make install'
           \}
 " Css
@@ -52,9 +52,12 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
-" * * * * * * * * * * * * 
-" Theme 		  
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
+" Theme
+" * * * * * * * * * * * *
+
+source $HOME/.config/nvim/plugged-config/indentline.vim
+source $HOME/.config/nvim/plugged-config/lightline.vim
 
 set signcolumn=yes
 
@@ -66,33 +69,26 @@ set splitbelow
 highlight LineNr ctermfg=grey
 highlight VertSplit cterm=NONE ctermfg=black
 
-let g:indentLine_fileTypeExclude = ['startify']
-let g:indentLine_bufTypeExclude = ['help', 'terminal']
-let g:indentLine_bufNameExclude = ['term:*']
+" Autocomplete / suggestion syntax
+hi Pmenu ctermbg=black ctermfg=white
 
 " startify
 let g:startify_custom_header = [
     \ '  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀     __                 ',
-    \ '    _____    __  __  /\_\    ____ ____   ', 
-    \ '   /  _  \  /\ \/\ \ \/\ \  /  __ __  \  ', 
-    \ '   /\ \/\ \ \ \ \_/ | \ \ \ /\ \/\ \/\ \ ', 
+    \ '    _____    __  __  /\_\    ____ ____   ',
+    \ '   /  _  \  /\ \/\ \ \/\ \  /  __ __  \  ',
+    \ '   /\ \/\ \ \ \ \_/ | \ \ \ /\ \/\ \/\ \ ',
     \ '   \ \_\ \_\ \ \___/   \ \_\\ \_\ \_\ \_\',
     \ '    \/_/\/_/  \/__/     \/_/ \/_/\/_/\/_/',
     \ ]
 
-" Airline
-"
-let g:airline#extensions#tabline#enabled = 1
-source $HOME/.config/nvim/plugged-config/airline.vim
-
-" Autocomplete / suggestion syntax
-hi Pmenu ctermbg=black ctermfg=white
-
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
 " Language Syntax
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
 
 source $HOME/.config/nvim/plugged-config/treesitter.vim
+source $HOME/.config/nvim/plugged-config/fzf.vim
+source $HOME/.config/nvim/plugged-config/fugitive.vim
 
 " CSS
 autocmd FileType scss setl iskeyword+=@-@
@@ -102,8 +98,9 @@ autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 sma
 autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 autocmd Filetype c setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-" glsl
+" By file ending
 autocmd BufEnter,BufNew *.glsl setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+autocmd BufEnter,BufNew *.rs setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " LaTeX
 let g:tex_conceal = ""
@@ -131,15 +128,12 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-" * * * * * * * * * * * * 
-" Usability 		  
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
+" Usability
+" * * * * * * * * * * * *
 
-" FZF
-source $HOME/.config/nvim/plugged-config/fzf.vim
-
-" FuGitive
-source $HOME/.config/nvim/plugged-config/fugitive.vim
+" Remote trailing white space on save
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Use case-insensitive search when pattern is lowercase.
 set ignorecase
@@ -162,7 +156,7 @@ command W w
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
-" Tab navigation 
+" Tab navigation
 map <C-h>         :tabprev<CR>
 map <C-l>         :tabnext<CR>
 nnoremap <C-t>    :tabnew<CR>
@@ -200,15 +194,15 @@ let g:floaterm_keymap_new    = '<Leader>ft'
 let g:floaterm_keymap_kill   = '<Leader><F4>'
 hi FloatermBorder guibg=orange guifg=cyan
 
-" Disable arrow keys 
+" Disable arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" * * * * * * * * * * * * 
-" Utility 		  
-" * * * * * * * * * * * * 
+" * * * * * * * * * * * *
+" Misc
+" * * * * * * * * * * * *
 
 let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/'}]
 
