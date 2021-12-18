@@ -1,4 +1,6 @@
 local lsp_requires = {}
+local lsp = require 'lspconfig'
+-- local coq = require 'coq'
 
 function lsp_requires.signature()
   local lsp_conf = {
@@ -11,8 +13,8 @@ function lsp_requires.signature()
   require "lsp_signature".on_attach(lsp_conf)
 end
 
-require'lspconfig'.tsserver.setup{
-  on_attach = 
+lsp.tsserver.setup{
+  on_attach =
     function(client, bfnr)
       local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
       local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -24,28 +26,28 @@ require'lspconfig'.tsserver.setup{
   filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "typescript.tsx", "javascript.tsx" }
 }
 
-require'lspconfig'.pyright.setup{
-  on_attach = 
+lsp.pyright.setup{
+  on_attach =
     function(client, bfnr)
       lsp_requires.signature()
     end
   }
 
-require'lspconfig'.bashls.setup{
-  on_attach = 
+lsp.bashls.setup{
+  on_attach =
     function(client, bfnr)
       lsp_requires.signature()
     end
   }
 
-require'lspconfig'.cssls.setup{
+lsp.cssls.setup{
   on_attach =
     function(client, bfnr)
       lsp_requires.signature()
     end
 }
 
-require'lspconfig'.ccls.setup{
+lsp.ccls.setup{
   on_attach =
     function(client, bfnr)
       lsp_requires.signature()
@@ -53,13 +55,23 @@ require'lspconfig'.ccls.setup{
   init_options = {
     clang = {
       extraArgs = {"--gcc-toolchain=/usr"};
-    }
+    },
+    cache = {directory = "/tmp/ccls-cache"}
   }
 }
 
-require'lspconfig'.rust_analyzer.setup{
+lsp.rust_analyzer.setup{
   on_attach =
     function(client, bfnr)
       lsp_requires.signature()
     end
 }
+
+lsp.svelte.setup{
+  on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+    end
+}
+
+--coq.lsp_ensure_capabilities()

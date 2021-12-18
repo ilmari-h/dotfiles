@@ -39,8 +39,8 @@ super + ctrl + l
 
 # Rebind capslock to esc
 super + shift + l
-    setxkbmap -option caps:escape & 
-	
+    setxkbmap -option caps:escape &
+
 # open power menu (script)
 super + Escape
 	rofi-fixed.sh -show power-menu -modi power-menu:power-menu
@@ -77,13 +77,13 @@ super + ctrl + {x,y,z}
 # apps
 #
 
-# file manager 
+# file manager
 super + f
 	$TERM -e ranger
 
 # mpc client
 super + n
-	$TERM -e ncmpcpp-ueberzug 
+	$TERM -e ncmpcpp-ueberzug
 
 # browser
 super + b
@@ -146,11 +146,11 @@ super + a
 # preselect the ratio
 # super + ctrl + {1-9}
 # 	bspc node -o 0.{1-9}
- 
+
 # # cancel the preselection for the focused node
 # super + ctrl + space
 # 	bspc node -p cancel
- 
+
 # cancel the preselection for the focused desktop
 # super + ctrl + shift + space
 #	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel

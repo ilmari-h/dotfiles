@@ -1,9 +1,10 @@
 #!/bin/sh
 
+PKG_MGR="paru"
+
 # Aliases
 alias {vim,v,vi}="nvim"
 alias r="ranger"
-alias yays="fzf-aur"
 alias lm="ls -t -1"
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -15,12 +16,12 @@ alias mktex="cp $HOME/.config/latex-template/template.tex ./"
 alias disk-usage="ncdu"
 alias sshpi="ssh pi@192.168.1.3"
 alias sshfspi="sshfs pi@192.168.1.3:/ /mnt/pi-remote/"
-alias yay="paru"
+alias pru="paru"
 alias sudoedit="doasedit"
 alias md2pdf="pandoc -V geometry:margin=1in -o output.pdf $1"
-alias fzf-Qi='yay -Qi $( yay -Qi | grep "Name * :" | awk "{print \$3, \$4, \$5}" | fzf )'
+alias fzf-Qi='$PKG_MGR -Qi $( $PKG_MGR -Qi | grep "Name * :" | awk "{print \$3, \$4, \$5}" | fzf )'
 alias eva="eva --fix 2"
-alias monero-wallet-cli="monero-wallet-cli --daemon-address node-1.sethsimmons.me:18089"
+alias monero-wallet-cli="monero-wallet-cli --daemon-address xmrnode.goodbits.dk:18081"
 alias g="git"
 alias init-react-js="cp -r /usr/share/init-react-js/* $1"
 alias ls="ls -lv --color --group-directories-first $@"

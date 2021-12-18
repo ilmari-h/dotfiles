@@ -8,10 +8,12 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
+"Plug 'ms-jpq/coq_nvim' use later
 
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Update parsers on update
 Plug 'tikhomirov/vim-glsl'
+Plug 'TovarishFin/vim-solidity'
 
 " Tabline
 Plug 'ryanoasis/vim-devicons'
@@ -68,6 +70,8 @@ set splitbelow
 " colors
 highlight LineNr ctermfg=grey
 highlight VertSplit cterm=NONE ctermfg=black
+hi Search ctermbg=white
+hi Search ctermfg=black
 
 " Autocomplete / suggestion syntax
 hi Pmenu ctermbg=black ctermfg=white
@@ -85,7 +89,6 @@ let g:startify_custom_header = [
 " * * * * * * * * * * * *
 " Language Syntax
 " * * * * * * * * * * * *
-
 source $HOME/.config/nvim/plugged-config/treesitter.vim
 source $HOME/.config/nvim/plugged-config/fzf.vim
 source $HOME/.config/nvim/plugged-config/fugitive.vim
@@ -98,13 +101,26 @@ autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 sma
 autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 autocmd Filetype c setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+" Solidity
+autocmd Filetype solidity setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+function ClangFormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+    "redraw
+  endif
+endfunction
+autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.hh,*.cc :call ClangFormatBuffer()
+
 " By file ending
 autocmd BufEnter,BufNew *.glsl setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 autocmd BufEnter,BufNew *.rs setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " LaTeX
 let g:tex_conceal = ""
-let g:vimtex_syntax_conceal_default = 0
+"let g:vimtex_syntax_conceal_default = 0
 let g:vimtex_compiler_latexmk = {
       \ 'build_dir' : '',
       \ 'callback' : 1,
@@ -132,6 +148,10 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Usability
 " * * * * * * * * * * * *
 
+" Prevent having to press enter after running function, NOTE: might break
+" stuff
+set cmdheight=2
+
 " Remote trailing white space on save
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -155,6 +175,9 @@ set mouse=a
 command W w
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+" Clear search highlight
+map <leader>n     :noh<CR>
 
 " Tab navigation
 map <C-h>         :tabprev<CR>
