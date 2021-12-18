@@ -4,11 +4,14 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Language Server Protocol plugins
-Plug 'hrsh7th/nvim-compe'
+" LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'ray-x/lsp_signature.nvim'
-"Plug 'ms-jpq/coq_nvim' use later
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Update parsers on update
@@ -19,7 +22,7 @@ Plug 'TovarishFin/vim-solidity'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 
-" Misc, non-essentials
+" Indenatation
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 
@@ -30,27 +33,14 @@ Plug 'Yggdroot/indentLine'
     Plug 'voldikss/vim-floaterm'
     Plug 'junegunn/fzf.vim'
     Plug 'dkprice/vim-easygrep'
+
 "
 " Language specifics:
 "
-" Javascript
-    Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'yuezk/vim-js'
-    Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'heavenshell/vim-jsdoc', {
-          \ 'for': ['javascript', 'javascript.jsx','typescript'],
-          \ 'do': 'make install'
-          \}
-" Css
-    Plug 'ap/vim-css-color'
-" HTML and HTML-templates
-    Plug 'lepture/vim-jinja'
 " Vim Wiki
     Plug 'vimwiki/vimwiki'
 " LaTeX
     Plug 'lervag/vimtex'
-" Haskell
-    Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
@@ -68,13 +58,27 @@ set number
 set splitbelow
 
 " colors
-highlight LineNr ctermfg=grey
-highlight VertSplit cterm=NONE ctermfg=black
+hi LineNr ctermfg=grey
+hi VertSplit cterm=NONE ctermfg=black
 hi Search ctermbg=white
 hi Search ctermfg=black
+hi clear SignColumn
 
-" Autocomplete / suggestion syntax
+" autocomplete
+hi CmpItemAbbrDeprecated ctermbg=red gui=strikethrough ctermfg=gray
+hi CmpItemAbbrMatch ctermbg=NONE ctermfg=DarkBlue
+hi CmpItemAbbrMatchFuzzy ctermbg=NONE ctermfg=DarkBlue
+hi CmpItemKindVariable ctermbg=NONE ctermfg=blue
+hi CmpItemKindInterface ctermbg=NONE ctermfg=blue
+hi CmpItemKindText ctermbg=NONE ctermfg=blue
+hi CmpItemKindFunction ctermbg=NONE ctermfg=DarkMagenta
+hi CmpItemKindMethod ctermbg=NONE ctermfg=DarkMagenta
+hi CmpItemKindKeyword ctermbg=NONE ctermfg=white
+hi CmpItemKindProperty ctermbg=NONE ctermfg=white
+hi CmpItemKindUnit ctermbg=NONE ctermfg=white
 hi Pmenu ctermbg=black ctermfg=white
+hi PmenuSel ctermbg=DarkGray ctermfg=white
+
 
 " startify
 let g:startify_custom_header = [
@@ -87,11 +91,15 @@ let g:startify_custom_header = [
     \ ]
 
 " * * * * * * * * * * * *
-" Language Syntax
+" Syntax and autocomplete.
 " * * * * * * * * * * * *
-source $HOME/.config/nvim/plugged-config/treesitter.vim
 source $HOME/.config/nvim/plugged-config/fzf.vim
 source $HOME/.config/nvim/plugged-config/fugitive.vim
+luafile $HOME/.config/nvim/lua/plugins/treesitter.lua
+luafile $HOME/.config/nvim/lua/plugins/languages.lua
+luafile $HOME/.config/nvim/lua/plugins/diagnostics.lua
+luafile $HOME/.config/nvim/lua/plugins/keybindings.lsp.lua
+luafile $HOME/.config/nvim/lua/plugins/completion.lsp.lua
 
 " CSS
 autocmd FileType scss setl iskeyword+=@-@
@@ -148,6 +156,9 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Usability
 " * * * * * * * * * * * *
 
+" Substitute live preview
+set inccommand=nosplit
+
 " Prevent having to press enter after running function, NOTE: might break
 " stuff
 set cmdheight=2
@@ -191,17 +202,10 @@ xnoremap <TAB> =
 let g:lexima_enable_basic_rules = 0
 let g:lexima_enable_newline_rules = 1
 
-" LSP, autocomplete, suggestions configs
-source $HOME/.config/nvim/plugged-config/lsp.vim
-source $HOME/.config/nvim/plugged-config/completion.vim
-luafile $HOME/.config/nvim/lua/plugins/lsp-diagnostics.lua
-luafile $HOME/.config/nvim/lua/plugins/compe.lua
+" luafile $HOME/.config/nvim/lua/plugins/lsp-diagnostics.lua
 
 " Use completion-nvim in every buffer
 "autocmd BufEnter * lua require'completion'.on_attach()
-
-" Language plugins
-luafile $HOME/.config/nvim/lua/plugins/languages.lua
 
 " Terminal
 let g:term_buf = 0
