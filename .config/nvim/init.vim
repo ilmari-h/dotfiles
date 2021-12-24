@@ -163,7 +163,7 @@ set inccommand=nosplit
 " stuff
 set cmdheight=2
 
-" Remote trailing white space on save
+" Remove trailing white space on save
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Use case-insensitive search when pattern is lowercase.
