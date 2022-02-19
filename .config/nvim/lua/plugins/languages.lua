@@ -3,14 +3,14 @@ local lsp = require 'lspconfig'
 -- local coq = require 'coq'
 
 function lsp_requires.signature()
-  --local signature_conf = {
-  --  bind = true,
-  --  handler_opts = {
-  --    border = "none"
-  --  },
-  --  hint_prefix = "ﰬ "
-  --}
-  --require "lsp_signature".on_attach(signature_conf)
+  local signature_conf = {
+    bind = true,
+    handler_opts = {
+      border = "none"
+    },
+    hint_prefix = "ﰬ "
+  }
+  require "lsp_signature".on_attach(signature_conf)
 end
 
 function lsp_requires.cmp(server_name)
@@ -87,6 +87,22 @@ lsp.svelte.setup{
     function(client, bfnr)
       lsp_requires.signature()
       lsp_requires.cmp("svelte")
+    end
+}
+
+lsp.solidity_ls.setup {
+  on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+      lsp_requires.cmp("solidity_ls")
+    end
+}
+
+lsp.texlab.setup {
+  on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+      lsp_requires.cmp("texlab")
     end
 }
 

@@ -5,6 +5,7 @@
 	email = 52321471+ilmari-h@users.noreply.github.com
 [core]
 	editor = nvim
+	excludesfile = /home/pazu/.config/git/.gitignore
 [alias]
   co = checkout
   aa = add --all
