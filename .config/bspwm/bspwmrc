@@ -5,7 +5,6 @@
 
 xsetroot -cursor_name left_ptr &
 pgrep -x sxhkd > /dev/null || sxhkd &
-#$HOME/.config/polybar/launch.sh
 
 bspc monitor DVI-D-0 -d 1 2 3 4 5 6 7 8 9
 bspc monitor HDMI-0 -d 10
@@ -28,14 +27,13 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Termite state=tiled rectangle=572x360
 
-
 cleanfullscreen & # Hide bar and tiled windows in fullscreen
 
 # Keyboard, rebind Caps Lock to ESC
 setxkbmap -option caps:escape &
 
 # Wallpaper
-xwallpaper --zoom ~/Pictures/theme/forest-stairs.jpg
+xwallpaper --zoom ~/Gallery/pictures/theme/forest-stairs.jpg
 
 # Notifications
 /usr/bin/dunst &
@@ -87,6 +85,9 @@ DPY-0: 1920x1080_100 @1920x1080 +1920+0 {
 
 # Remove annoying stuff
 rm $HOME/.yarnrc
+
+# polybar, start with delay to wait for displays
+sleep 3 && polybar main &
 
 # Rsync jobs to synchronize files
 rsync-jobs.sh

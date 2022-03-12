@@ -79,7 +79,21 @@ lsp.rust_analyzer.setup{
     function(client, bfnr)
       lsp_requires.signature()
       lsp_requires.cmp("rust_analyzer")
-    end
+    end,
+  settings = {
+      ["rust-analyzer"] = {
+          assist = {
+              importGranularity = "module",
+              importPrefix = "by_self",
+          },
+          cargo = {
+              loadOutDirsFromCheck = true
+          },
+          procMacro = {
+              enable = true
+          },
+      }
+  }
 }
 
 lsp.svelte.setup{

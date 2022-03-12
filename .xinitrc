@@ -11,6 +11,7 @@ export TERM=alacritty
 export TERMINAL=alacritty
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/share/npm/bin
+export PATH=$PATH:$HOME/.local/share/cargo/bin
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -22,6 +23,10 @@ export CHIA_ROOT=$HOME/.chia/mainnet
 export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
 export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
 export CABAL_DIR="$XDG_CACHE_HOME"/cabal
+
+# Rustup
+export RUSTUP_HOME=$HOME/.config/rustupc
+. "/home/pazu/.local/share/cargo/env"
 
 # God knows why all three of these are needed
 export ANDROID_SDK_ROOT=$HOME/.local/share/androidDEV/Sdk
@@ -41,6 +46,9 @@ export HISTFILE="$XDG_DATA_HOME"/bash/history
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export STACK_ROOT="$XDG_DATA_HOME"/stack
+
+# File manager icons
+source ~/.config/lf/env
 
 # Pre window manager
 xset r rate 280 40

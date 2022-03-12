@@ -4,7 +4,9 @@ PKG_MGR="paru"
 
 # Aliases
 alias {vim,v,vi}="nvim"
-alias r="ranger"
+
+alias {l,lf,r}="lfub"
+
 alias lm="ls -t -1"
 alias cp="cp -iv"
 alias mv="mv -iv"

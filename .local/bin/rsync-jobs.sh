@@ -10,9 +10,8 @@ notify_error() {
 do_rsync() {
   rsync -aP /home/pazu/.config pi@192.168.1.3:/mnt/hdd1/sync/user &&
   rsync -aP /home/pazu/.local/bin pi@192.168.1.3:/mnt/hdd1/sync/user/.local &&
-  rsync -aP /home/pazu/Pictures pi@192.168.1.3:/mnt/hdd1/sync/user &&
+  rsync -aP /home/pazu/Gallery pi@192.168.1.3:/mnt/hdd1/sync/user &&
   rsync -aP /home/pazu/Music pi@192.168.1.3:/mnt/hdd1/sync/user &&
-  rsync -aP /home/pazu/Videos pi@192.168.1.3:/mnt/hdd1/sync/user &&
   rsync -aP /home/pazu/Documents pi@192.168.1.3:/mnt/hdd1/sync/user &&
   rsync -aP /home/pazu/Workspaces pi@192.168.1.3:/mnt/hdd1/sync/user &&
   rsync -aP /mnt/disk1/library pi@192.168.1.3:/mnt/hdd1/sync
