@@ -217,7 +217,7 @@ let g:term_buf = 0
 let g:term_win = 0
 
 " Terminal (internal & external)
-nnoremap <F5> :!$TERMINAL -e ranger & <cr><cr>
+nnoremap <F5> :!$TERMINAL -e lfub & <cr><cr>
 nnoremap <F6> :!$TERMINAL & <cr><cr>
 let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_keymap_prev   = '<F2>'

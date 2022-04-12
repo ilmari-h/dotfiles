@@ -48,7 +48,7 @@ udiskie &
 picom &
 
 # Fan curve
-exec .config/nfancurve/temp.sh > /dev/null 2>&1 &
+exec .local/bin/nfancurve/temp.sh > /dev/null 2>&1 &
 
 # Power management
 xidlehook \

@@ -103,6 +103,7 @@ map <c-n> push :mkdir<space>
 map <c-r> reload
 map <backspace> set hidden!
 map <enter> shell
+ map <a-g> $dragon-drag-and-drop -a -x $fx
 map x $$f
 map X !$f
 map o &mimeopen $f
@@ -125,6 +126,12 @@ map gr cd /
 map gm cd /mnt/
 map gM cd /media/
 map gc cd ~/.config/
+
+map DD $trash-put $fx
+
+# Commands when running inside tmux
+map <tab> $tmux previous-window || true
+map <backtab> $tmux next-window || true
 
 # Source Bookmarks
 # source "~/.config/lf/shortcutrc"
