@@ -87,7 +87,7 @@ super + b
 
 # vim
 super + v
-	$TERM -e start-nvim.sh
+	$TERM -e tmux new-session 'start-nvim.sh'
 
 #
 # focus/swap

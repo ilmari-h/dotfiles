@@ -1,5 +1,6 @@
 local lsp_requires = {}
 local lsp = require 'lspconfig'
+local configs = require 'lspconfig/configs'
 -- local coq = require 'coq'
 
 function lsp_requires.signature()
@@ -94,6 +95,14 @@ lsp.rust_analyzer.setup{
           },
       }
   }
+}
+
+lsp.gopls.setup{
+  on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+      lsp_requires.cmp("gopls")
+    end
 }
 
 lsp.svelte.setup{

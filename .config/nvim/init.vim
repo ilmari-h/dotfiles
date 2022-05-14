@@ -23,6 +23,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Update parsers on
 Plug 'tikhomirov/vim-glsl'
 Plug 'TovarishFin/vim-solidity'
 
+" Navigation
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 " Tabline
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
@@ -36,7 +41,7 @@ Plug 'Yggdroot/indentLine'
 " File and project management.
     Plug 'mhinz/vim-startify'
     Plug 'voldikss/vim-floaterm'
-    Plug 'junegunn/fzf.vim'
+    "Plug 'junegunn/fzf.vim'
     Plug 'dkprice/vim-easygrep'
 
 "
@@ -98,24 +103,23 @@ let g:startify_custom_header = [
 " * * * * * * * * * * * *
 " Syntax and autocomplete.
 " * * * * * * * * * * * *
-source $HOME/.config/nvim/plugged-config/fzf.vim
-source $HOME/.config/nvim/plugged-config/fugitive.vim
+" source $HOME/.config/nvim/plugged-config/fzf.vim
+luafile $HOME/.config/nvim/lua/plugins/telescope.lua
 luafile $HOME/.config/nvim/lua/plugins/treesitter.lua
 luafile $HOME/.config/nvim/lua/plugins/languages.lua
 luafile $HOME/.config/nvim/lua/plugins/diagnostics.lua
 luafile $HOME/.config/nvim/lua/plugins/keybindings.lsp.lua
 luafile $HOME/.config/nvim/lua/plugins/completion.lsp.lua
 
+" Most languages use tabs
+set tabstop=4 noexpandtab shiftwidth=4 smarttab
+
+set listchars=tab:\¦\ 
+set list
+hi NonText ctermfg=239 guifg=gray
+
 " CSS
 autocmd FileType scss setl iskeyword+=@-@
-
-" C and C++
-autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-autocmd Filetype cpp setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-autocmd Filetype c setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Solidity
-autocmd Filetype solidity setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 function ClangFormatBuffer()
   if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
@@ -189,8 +193,6 @@ set undofile
 set scrolloff=10 " Margin of scroll
 set mouse=a
 command W w
-"set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " Clear search highlight
 map <leader>n     :noh<CR>

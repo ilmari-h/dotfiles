@@ -132,6 +132,7 @@ map DD $trash-put $fx
 # Commands when running inside tmux
 map <tab> $tmux previous-window || true
 map <backtab> $tmux next-window || true
+map <c-t> $tmux new-window -n "lf" -c "#{pane_current_path}" lfub $PWD
 
 # Source Bookmarks
 # source "~/.config/lf/shortcutrc"

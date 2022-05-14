@@ -2,12 +2,23 @@
 
 local configs = require"nvim-treesitter.configs"
 configs.setup {
-  ensure_installed = "maintained", -- Only user parsers that are maintained
+  ensure_installed = -- used to be "maintained" use explicit list for now
+    {"c", "bash", "cpp", "css", "go", "glsl", "javascript",
+      "json", "lua", "python", "rust", "solidity", "yaml"},
   highlight = {
     enable = true,
   },
   indent = {
     enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<CR>',
+      scope_incremental = '<CR>',
+      node_incremental = '<TAB>',
+      node_decremental = '<S-TAB>',
+    },
   },
 }
 

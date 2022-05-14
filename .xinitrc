@@ -28,6 +28,9 @@ export CABAL_DIR="$XDG_CACHE_HOME"/cabal
 export RUSTUP_HOME=$HOME/.config/rustupc
 . "/home/pazu/.local/share/cargo/env"
 
+# Go lang
+export GOPATH=$HOME/.local/bin/go
+
 # God knows why all three of these are needed
 export ANDROID_SDK_ROOT=$HOME/.local/share/androidDEV/Sdk
 export ANDROID_SDK_HOME=$HOME/.local/share/androidDEV/Sdk
@@ -36,6 +39,12 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Go executables
+export PATH=$PATH:$GOPATH/bin
+
+# Node, some outdated modules may require this.
+export NODE_OPTIONS=--openssl-legacy-provider
 
 # XDG Base Directory compliance
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
@@ -49,6 +58,9 @@ export STACK_ROOT="$XDG_DATA_HOME"/stack
 
 # File manager icons
 source ~/.config/lf/env
+
+# Dev binaries
+source ~/Workspaces/dev-binaries.sh
 
 # Pre window manager
 xset r rate 280 40
