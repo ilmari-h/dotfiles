@@ -7,8 +7,9 @@
 # Environment Variables
 export TZ='Europe/Helsinki'
 export EDITOR=nvim
-export TERM=alacritty
-export TERMINAL=alacritty
+export TERM=start-term.sh
+export TERMINAL=start-term.sh
+
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/share/npm/bin
 export PATH=$PATH:$HOME/.local/share/cargo/bin
@@ -29,8 +30,13 @@ export RUSTUP_HOME=$HOME/.config/rustupc
 . "/home/pazu/.local/share/cargo/env"
 
 # Go lang
-export GOPATH=$HOME/.local/bin/go
+export GOPATH=$HOME/.local/share/go
+export PATH=$PATH:$GOPATH/bin
 
+# Haskell with ghcup
+export GHCUP_USE_XDG_DIRS=true
+
+# Android development
 # God knows why all three of these are needed
 export ANDROID_SDK_ROOT=$HOME/.local/share/androidDEV/Sdk
 export ANDROID_SDK_HOME=$HOME/.local/share/androidDEV/Sdk
@@ -39,9 +45,6 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Go executables
-export PATH=$PATH:$GOPATH/bin
 
 # Node, some outdated modules may require this.
 export NODE_OPTIONS=--openssl-legacy-provider
@@ -58,9 +61,6 @@ export STACK_ROOT="$XDG_DATA_HOME"/stack
 
 # File manager icons
 source ~/.config/lf/env
-
-# Dev binaries
-source ~/Workspaces/dev-binaries.sh
 
 # Pre window manager
 xset r rate 280 40

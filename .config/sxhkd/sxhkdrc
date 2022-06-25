@@ -79,7 +79,7 @@ super + ctrl + {x,y,z}
 
 # file manager
 super + f
-	$TERM -e tmux new-session 'lfub'
+	$TERM lfub
 
 # browser
 super + b
@@ -87,7 +87,7 @@ super + b
 
 # vim
 super + v
-	$TERM -e tmux new-session 'start-nvim.sh'
+	$TERM start-nvim.sh
 
 #
 # focus/swap

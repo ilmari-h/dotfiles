@@ -129,6 +129,14 @@ lsp.texlab.setup {
     end
 }
 
+lsp.hls.setup{
+	on_attach =
+    function(client, bfnr)
+      lsp_requires.signature()
+      lsp_requires.cmp("hls")
+    end
+}
+
 lsp.sumneko_lua.setup {
   on_attach =
     function(_, _)

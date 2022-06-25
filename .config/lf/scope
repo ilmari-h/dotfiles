@@ -21,6 +21,10 @@ FILE_PATH="${1}"         # Full path of the highlighted file
 
 #FILE_EXTENSION="${FILE_PATH##*.}"
 #FILE_EXTENSION_LOWER=$(echo ${FILE_EXTENSION} | tr '[:upper:]' '[:lower:]')
+if [ -d "$FILE_PATH" ]; then
+	tree -L 2 "${FILE_PATH}"
+	exit 0
+fi
 
 # Settings
 export HIGHLIGHT_SIZE_MAX=262143  # 256KiB

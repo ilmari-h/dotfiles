@@ -4,7 +4,7 @@ local configs = require"nvim-treesitter.configs"
 configs.setup {
   ensure_installed = -- used to be "maintained" use explicit list for now
     {"c", "bash", "cpp", "css", "go", "glsl", "javascript",
-      "json", "lua", "python", "rust", "solidity", "yaml"},
+      "json", "lua", "python", "rust", "solidity", "yaml", "haskell"},
   highlight = {
     enable = true,
   },

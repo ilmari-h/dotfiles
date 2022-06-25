@@ -5,7 +5,7 @@ PKG_MGR="paru"
 # Aliases
 alias {vim,v,vi}="nvim"
 
-alias {l,lf,r}="tmux new-session 'lfub'"
+alias {l,lf,r}="lfub"
 
 alias lm="ls -t -1"
 alias cp="cp -iv"

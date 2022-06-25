@@ -104,6 +104,8 @@ let g:startify_custom_header = [
 " Syntax and autocomplete.
 " * * * * * * * * * * * *
 " source $HOME/.config/nvim/plugged-config/fzf.vim
+
+" LSP and dependent.
 luafile $HOME/.config/nvim/lua/plugins/telescope.lua
 luafile $HOME/.config/nvim/lua/plugins/treesitter.lua
 luafile $HOME/.config/nvim/lua/plugins/languages.lua
@@ -111,16 +113,19 @@ luafile $HOME/.config/nvim/lua/plugins/diagnostics.lua
 luafile $HOME/.config/nvim/lua/plugins/keybindings.lsp.lua
 luafile $HOME/.config/nvim/lua/plugins/completion.lsp.lua
 
-" Most languages use tabs
+" Tab settings.
 set tabstop=4 noexpandtab shiftwidth=4 smarttab
+
+" Small tab spacing for webdev files and haskell.
+autocmd FileType scss,css,javascript,typescript,svelte setlocal expandtab shiftwidth=2
+autocmd BufWritePre *.hs setlocal expandtab shiftwidth=2
 
 set listchars=tab:\¦\ 
 set list
 hi NonText ctermfg=239 guifg=gray
 
-" CSS
-autocmd FileType scss setl iskeyword+=@-@
 
+" C/C++
 function ClangFormatBuffer()
   if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
     let cursor_pos = getpos('.')
@@ -131,9 +136,8 @@ function ClangFormatBuffer()
 endfunction
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.hh,*.cc :call ClangFormatBuffer()
 
-" By file ending
-autocmd BufEnter,BufNew *.glsl setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-autocmd BufEnter,BufNew *.rs setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+" SCSS
+autocmd FileType scss setl iskeyword+=@-@
 
 " LaTeX
 let g:tex_conceal = ""
@@ -187,7 +191,7 @@ vnoremap Y yg_
 map <space> <leader>
 
 set shortmess=A " No swapfile nagging
-set clipboard=unnamedplus " No bs clipboard
+set clipboard=unnamed,unnamedplus " No bs clipboard
 set undodir=~/.cache/nvim/undo
 set undofile
 set scrolloff=10 " Margin of scroll
@@ -218,7 +222,7 @@ let g:lexima_enable_newline_rules = 1
 let g:term_buf = 0
 let g:term_win = 0
 
-" Terminal (internal & external)
+" Terminal (internal & external) TODO: use TMUX windows
 nnoremap <F5> :!$TERMINAL -e lfub & <cr><cr>
 nnoremap <F6> :!$TERMINAL & <cr><cr>
 let g:floaterm_keymap_toggle = '<F4>'
