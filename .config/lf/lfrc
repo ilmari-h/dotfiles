@@ -120,6 +120,7 @@ map B bulkrename
 map V push :!nvim<space>
 
 map W $setsid -f $TERMINAL >/dev/null 2>&1
+map w $tmux new-window
 
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 

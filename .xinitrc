@@ -5,10 +5,12 @@
 # Executed by startx
 
 # Environment Variables
+
 export TZ='Europe/Helsinki'
 export EDITOR=nvim
 export TERM=start-term.sh
 export TERMINAL=start-term.sh
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/share/npm/bin
