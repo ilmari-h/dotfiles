@@ -36,7 +36,7 @@ export GOPATH=$HOME/.local/share/go
 export PATH=$PATH:$GOPATH/bin
 
 # Haskell with ghcup
-export GHCUP_USE_XDG_DIRS=true
+export GHCUP_INSTALL_BASE_PREFIX=$HOME/.local/share/ghcup
 
 # Android development
 # God knows why all three of these are needed
